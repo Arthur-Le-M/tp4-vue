@@ -4,10 +4,13 @@
         <h1>My Application</h1>
         <nav>
             <ul>
-            <li><a href="#home">Home</a></li>
+              <li><router-link to="/">Home</router-link></li>
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li v-if="userStore.isAuthenticated">
+            <router-link to="/conversations">Conversations</router-link>
+            </li>
             <li v-if="userStore.user">
             <a href="#contact">{{
               userStore.user.name || userStore.user.username
@@ -65,6 +68,12 @@ export default {
 
 .base-header nav ul li {
     margin: 0 15px;
+}
+
+.base-header nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
 }
 
 </style>

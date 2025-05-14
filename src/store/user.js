@@ -32,7 +32,7 @@ export const useUserStore = defineStore('user', {
     },
 
     signOut() {
-      msalInstance.logout();
+      msalInstance.logoutRedirect();
       this.user = null
       this.isAuthenticated = false
     },
