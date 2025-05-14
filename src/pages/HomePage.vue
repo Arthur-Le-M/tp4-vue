@@ -13,44 +13,44 @@
 </template>
 
 <script>
-import BaseButton from '../components/baseButton.vue'
-import AsyncButton from '../components/asyncButton.vue'
-import SigninButton from '../components/SigninButton.vue'
+import AsyncButton from "../components/asyncButton.vue";
+import BaseButton from "../components/baseButton.vue";
+import SigninButton from "../components/SigninButton.vue";
 
 export default {
-  name: 'HomePage',
+  name: "HomePage",
   components: {
     BaseButton,
     AsyncButton,
-    SigninButton
+    SigninButton,
   },
   data() {
   return {
     isPending: false,
-    count: 1
-  }
-    },
+    count: 1,
+    };
+  },
   methods: {
     handleAsyncClick() {
       // Simule une action asynchrone (ex. appel API)
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           console.log("Action async terminée 🎉")
-          resolve()
-        }, 2000)
-      })
+          resolve();
+        }, 2000);
+      });
     },
     handleAsyncClick2() {
         
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
             setTimeout(() => {
-            this.count++
-            resolve()
-            }, this.count * 1000)
-        })
-    }
-  }
-}
+            this.count++;
+            resolve();
+            }, this.count * 1000);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped lang="css">

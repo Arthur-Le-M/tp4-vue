@@ -1,15 +1,21 @@
+import { msalInstance } from '@/lib/microsoftGraph.js'
+import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 import App from './App.vue'
-import { msalInstance } from '@/lib/microsoftGraph.js'
+import { useUserStore } from './store/user'
 
 async function bootstrap() {
-    // attends que MSAL soit prêt
-    await msalInstance.initialize()
-  
-    // puis monte ton appli
-    createApp(App)
-      .provide('msal', msalInstance)
-      .mount('#app')
-  }
-  
-  bootstrap()
+  const pinia = createPinia()
+  await msalInstance.initialize()
+
+  const app = createApp(App)
+    .provide('msal', msalInstance)
+    .use(pinia)
+
+  app.mount('#app')
+
+  const userStore = useUserStore()
+  userStore.checkAuthState()
+}
+
+bootstrap()

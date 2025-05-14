@@ -2,40 +2,45 @@
 
 <template>
     <div>
-      <!-- Bouton pour lancer l’authentification -->
-      <button @click="handleSignIn">Se connecter</button>
-  
-      <!-- Affichage des infos une fois connecté -->
-      <div v-if="user">
-        <p>Utilisateur connecté :</p>
-        <ul>
-          <li>Nom : {{ user.name || user.username }}</li>
-          <li>Login (email) : {{ user.username }}</li>
-        </ul>
-      </div>
-    </div>
-  </template>
+    <baseButton
+      v-if="!userStore.isAuthenticated"
+      @click="handleSignIn"
+      :disabled="userStore.isLoading"
+    >
+      {{ userStore.isLoading ? "Connexion..." : "Se connecter" }}
+    </baseButton>
+    <baseButton v-else @click="handleSignOut">Se déconnecter</baseButton>
+  </div>
+</template>
 
 <script>
-import { signInAndGetUser } from '@/lib/microsoftGraph.js'
+import { useUserStore } from "@/store/user";
+import baseButton from "./baseButton.vue";
 
 export default {
-  name: 'SigninButton',
-  data() {
+  name: "SigninButton",
+  components: {
+    baseButton,
+  },
+  setup() {
+    const userStore = useUserStore();
     return {
-      user: null
-    }
+      userStore,
+    };
   },
   methods: {
     async handleSignIn() {
       try {
-        this.user = await signInAndGetUser()
+        await this.userStore.signIn();
       } catch (err) {
-        console.error('Erreur durant la connexion :', err)
+        console.error("Erreur durant la connexion :", err);
       }
-    }
-  }
-}
+    },
+    handleSignOut() {
+      this.userStore.signOut();
+    },
+  },
+};
 </script>
 
 <style scoped>

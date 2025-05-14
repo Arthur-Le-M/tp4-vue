@@ -9,14 +9,14 @@
 </template>
 
 <script>
-import BaseHeader from './baseHeader.vue'
-import BaseFooter from './baseFooter.vue'
+import BaseFooter from "./baseFooter.vue";
+import BaseHeader from "./baseHeader.vue";
 
 export default {
-  name: 'BaseLayout',
+  name: "BaseLayout",
   components: {
     BaseHeader,
-    BaseFooter
-  }
-}
+    BaseFooter,
+  },
+};
 </script>

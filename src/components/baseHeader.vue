@@ -8,6 +8,11 @@
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li v-if="userStore.user">
+            <a href="#contact">{{
+              userStore.user.name || userStore.user.username
+            }}</a>
+          </li>
             </ul>
         </nav>
         </header>
@@ -16,12 +21,19 @@
 
 
 <script>
+import { useUserStore } from "@/store/user";
+
 export default {
-  name: 'BaseHeader',
-  components: {
-    
-  }
-}
+    name: "BaseHeader",
+  components: {},
+  setup() {
+    const userStore = useUserStore();
+
+    return {
+      userStore,
+    };
+  },
+};
 </script>
 
 <style scoped lang="css">
