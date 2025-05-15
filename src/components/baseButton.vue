@@ -42,26 +42,26 @@ export default {
 }
 
 .base-button:hover {
-  background-color: #0056b3;
+  background-color: #053b74;
   transition: background-color 0.3s ease;
 }
 
 .default {
-  background-color: #007bff;
+  background-color: #035cbb;
 }
 
 .primary {
-  background-color: #42b983;
+  background-color: #11cc78;
   color: white;
 }
 
 .secondary {
-  background-color: #35495e;
+  background-color: #1c2b3c;
   color: white;
 }
 
 .danger {
-  background-color: #e74c3c;
+  background-color: #9d1f11;
   color: white;
 }
 

@@ -2,6 +2,7 @@
   <div class="home-page">
     <h1>Welcome to the Home Page</h1>
     <p>This is a simple home page component.</p>
+    <div style="display: flex;">
     <BaseButton>Click Me!</BaseButton>
     <BaseButton disabled>Disabled Button</BaseButton>
     <BaseButton color="secondary">Secondary Button</BaseButton>
@@ -9,6 +10,7 @@
     <AsyncButton @click="handleAsyncClick">Async Button</AsyncButton>
     <AsyncButton color="secondary" @click="handleAsyncClick2">Wait {{ this.count }} secondes</AsyncButton>
     <SigninButton />
+    </div>
   </div>
 </template>
 

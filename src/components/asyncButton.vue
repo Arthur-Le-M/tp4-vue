@@ -1,5 +1,5 @@
 <template>
-    <base-button :disabled="isPending" :color="color" @click="handleClick">
+  <base-button :disabled="isPending" :color="color" @click="handleClick">
     <font-awesome-icon v-if="isPending" :icon="['fas', 'circle-notch']" pulse />
     <slot />
   </base-button>
@@ -17,11 +17,25 @@ export default {
       type: String,
       default: "primary",
     },
-    },
+  },
   data() {
     return {
       isPending: false,
     };
   },
-  };
+  methods: {
+    handleClick() {
+      const originalOnClick = /** @type {() => Promise<void>} */ (
+        this.$attrs.onClick
+      );
+      if (!originalOnClick) return;
+
+      this.isPending = true;
+
+      originalOnClick().finally(() => {
+        this.isPending = false;
+      });
+    },
+  },
+};
 </script>
